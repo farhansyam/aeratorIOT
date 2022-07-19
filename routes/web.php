@@ -17,7 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//kolam
+//kolam create
+Route::post('kolam/set',[FirebaseController::class, 'set'])->middleware('auth');
+Route::get('kolam/create',[FirebaseController::class, 'create'])->middleware('auth');
+//kolam delete
+Route::get('kolam/delete/{namaKolam}',[FirebaseController::class, 'delete'])->middleware('auth');
+//kolam read
 Route::get('read',[FirebaseController::class, 'read']);
+Route::get('kolam/{namaKolam}',[FirebaseController::class, 'detail'])->middleware('auth');
+// kolam edit
+Route::get('kolam/edit/{kodeKolam}',[FirebaseController::class, 'edit'])->middleware('auth');
+Route::post('kolam/setupdate',[FirebaseController::class, 'update'])->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\FirebaseController::class, 'read'])->name('home')->middleware('auth');

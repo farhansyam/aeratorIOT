@@ -142,76 +142,73 @@ class FirebaseController extends Controller
 
     public function read()
     {
-        // $ref = $this->database->getReference('hewan/herbivora/domba')->getSnapshot();
-        // dump($ref);
-        // $ref = $this->database->getReference('hewan/herbivora')->getValue();
-        // dump($ref);
-        $ref = $this->database->getReference('monitoring/kolam-1')->getValue();
-        return view('home',compact('ref'));
-        // $'ref' = $this->database->getReference('hewan/omnivora')->getSnapshot()->exists();
-    }
-
-    public function update()
-    {
-        // before
-        $ref = $this->database->getReference('tumbuhan/dikotil')->getValue();
-        dump($ref);
-
-        // update data
-        $ref = $this->database->getReference('tumbuhan')
-        ->update(["dikotil" => "mangga"]);
-
-        // after
-        $ref = $this->database->getReference('tumbuhan/dikotil')->getValue();
+        $ref = $this->database->getReference('monitoring')->getValue();
         dump($ref);
     }
 
-    public function set()
+    public function update(Request $request)
     {
         // before
-        $ref = $this->database->getReference('hewan')->getValue();
-        dump($ref);
-
-        // set data
-        $ref = $this->database->getReference('hewan/karnivora')
-        ->set([
-            "harimau" => [
-                "benggala" => "galak",
-                "sumatera" => "jinak"
-            ]
+        $refData = $this->database->getReference('monitoring/'.$request->kodeKolam)->getValue();
+        $ref = $this->database->getReference('monitoring/'.$request->kodeKolam)
+        ->update([
+            
+                "diameter" => $request->diameter,
+                "ketinggian" => $request->ketinggian,
+                "namaKolam" => $request->namaKolam,
+                "oxygen" => $refData['oxygen'],
+                "ph" => $refData['ph'],
+                "temp" => $refData['temp'],
+                "turbidity" => $refData['turbidity'],
+            
         ]);
 
+        return redirect('read');
+    }
+
+    public function set(Request $request)
+    {
+        // set data
+        $ref = $this->database->getReference('monitoring/'.$request->kodeKolam)
+        ->set([
+            
+                "diameter" => $request->diameter,
+                "ketinggian" => $request->ketinggian,
+                "namaKolam" => $request->namaKolam,
+                "oxygen" => 0,
+                "ph" => 0,
+                "temp" => 0,
+                "turbidity" => 0,
+            
+        ]);
+        
+
         // after
-        $ref = $this->database->getReference('hewan')->getValue();
+        $ref = $this->database->getReference('/monitoring')->getValue();
         dump($ref);
     }
     
-    public function delete()
+    public function delete($kodeKolam)
     {
-        // before
-        $ref = $this->database->getReference('hewan/karnivora/harimau')->getValue();
-        dump($ref);
+        $ref = $this->database->getReference('monitoring/'.$kodeKolam)->remove();
+        return redirect('read');
+    }
 
-        /**
-         * 1. remove()
-         * 2. set(null)
-         * 3. update(["key" => null])
-         */
+    public function create()
+    {
+        return view('backend.createKolam');
+    }
 
-        // remove()
-        $ref = $this->database->getReference('hewan/karnivora/harimau/benggala')->remove();
-
-        // set(null)
-        $ref = $this->database->getReference('hewan/karnivora/harimau/benggala')
-            ->set(null);
-
-        // update(["key" => null])
-        $ref = $this->database->getReference('hewan/karnivora/harimau')
-            ->update(["benggala" => null]);
-
-        // after
-        $ref = $this->database->getReference('hewan/karnivora/harimau')->getValue();
-        dump($ref);
+    public function detail($kodeKolam)
+    {
+        $ref = $this->database->getReference('monitoring/'.$kodeKolam)->getValue();
+        dd($ref);
+    }
+    public function edit($kodeKolam)
+    {
+        $kode = $kodeKolam;
+        $ref = $this->database->getReference('monitoring/'.$kodeKolam)->getValue();
+        return view('backend.editKolam',compact('ref','kodeKolam'));
     }
         
 }
