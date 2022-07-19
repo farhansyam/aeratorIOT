@@ -143,7 +143,8 @@ class FirebaseController extends Controller
     public function read()
     {
         $ref = $this->database->getReference('monitoring')->getValue();
-        dump($ref);
+        $key = $this->database->getReference('monitoring')->getChildKeys();
+        return view('home',compact('ref','key'));
     }
 
     public function update(Request $request)
@@ -184,8 +185,7 @@ class FirebaseController extends Controller
         
 
         // after
-        $ref = $this->database->getReference('/monitoring')->getValue();
-        dump($ref);
+        return redirect('home');
     }
     
     public function delete($kodeKolam)

@@ -56,75 +56,37 @@
               </div>
             </div>
           </div>
+          
+
           <div class="row">
-            <!-- col -->
-            <div class="col m6 s12 l3">
-              <div class="card">
-                <div class="p-15">
-                  <div class="d-flex no-block align-items-center">
-                    <div class="m-r-10 red-text text-accent-4">
-                      {{-- <i class="small material-icons">insert_chart</i> --}}
-                      <span class="iconify" data-icon="mdi:thermometer" data-width="48" data-height="48"></span>
+            @for ($i = 0; $i <count($ref); $i++)
+            <div class="col l6 m6 s12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="d-flex align-items-center no-block">
+                        <div>
+                            <h3 class="font-light">{{$key[$i]}}</h3>
+                            <h6>Detail Kolam</h6>
+                        </div>
+                        <div class="ml-auto">
+                            <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><a href="{{url('kolam/'.$key[$i])}}"><button class="waves-effect waves-light blue btn"><i class="material-icons dp48">remove_red_eye</i></button></a>
+                            <a href="{{url('kolam/edit/'.$key[$i])}}"><button class="waves-effect waves-light blue btn"><i class="material-icons dp48">edit</i></button></a>
+                            <a href="{{url('kolam/delete/'.$key[$i])}}"><button class="waves-effect waves-light blue btn"><i class="material-icons dp48">delete</i></button></a>
+                            
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                      <span>Temperature</span>
-                      <h4 class="font-medium m-b-0">{{$ref['temp']}} ° C</h4>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-            <!-- col -->
-            <!-- col -->
-            <div class="col m6 s12 l3">
-              <div class="card">
-                <div class="p-15">
-                  <div class="d-flex no-block align-items-center">
-                    <div class="m-r-10 light-blue-text">
-                      <span class="iconify" data-icon="ic:sharp-water-drop" data-width="48"></span>
-                    </div>
-                    <div>
-                      <span>Ph Air</span>
-                      <h4 class="font-medium m-b-0">{{$ref['ph']}}</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- col -->
-            <!-- col -->
-            <div class="col m6 s12 l3">
-              <div class="card">
-                <div class="p-15">
-                  <div class="d-flex no-block align-items-center">
-                    <div class="m-r-10 orange-text text-darken-2 text-darken-1">
-                      <span class="iconify" data-icon="bx:water" data-width="48" data-height="48"></span>
-                    </div>
-                    <div>
-                      <span>Turbidity</span>
-                      <h4 class="font-medium m-b-0">{{$ref['turbidity']}}</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- col -->
-            <!-- col -->
-            <div class="col m6 s12 l3">
-              <div class="card">
-                <div class="p-15">
-                  <div class="d-flex no-block align-items-center">
-                    <div class="m-r-10 deep-purple-text text-accent-2">
-                      <span class="iconify" data-icon="healthicons:oxygen-tank" data-width="48" data-height="48"></span>
-                    </div>
-                    <div>
-                      <span>Oxygen</span>
-                      <h4 class="font-medium m-b-0">{{$ref['oxygen']}}</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- col -->
+        </div>    
+            @endfor
+            
+        
           </div>
+            <div class="fixed-action-btn">
+              <a class="btn-floating btn-large blue" href="{{url('kolam/create')}}">
+                <i class="large material-icons">add</i>aa
+              </a>
+            </div>
+      
 @endsection
