@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Kreait\Firebase\Factory;
+use App\Models\User;
 use Kreait\Firebase\Auth;
 use Firebase\Auth\Token\Exception\InvalidToken;
 use Kreait\Firebase\Exception\Auth\RevokedIdToken;
+use App\Notifications\SendPushNotification;
 
 class FirebaseController extends Controller
 {
@@ -144,6 +147,11 @@ class FirebaseController extends Controller
     {
         $ref = $this->database->getReference('monitoring')->getValue();
         $key = $this->database->getReference('monitoring')->getChildKeys();
+        $title = "🐟 SMWP Notif 🐟";
+        $message = "🔥 Suhu Air Kolam Terlalu Panas Segera Cek";
+        $fcmTokens = User::First('device_token')->device_token;
+        // $fcmTokens =
+        Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
         return view('home',compact('ref','key'));
     }
 
@@ -202,7 +210,12 @@ class FirebaseController extends Controller
     public function detail($kodeKolam)
     {
         $ref = $this->database->getReference('monitoring/'.$kodeKolam)->getValue();
-        dd($ref);
+        return view('backend.detail',compact('ref','kodeKolam'));
+    }
+    public function detailApi($kodeKolam)
+    {
+        $ref = $this->database->getReference('monitoring/'.$kodeKolam)->getValue();
+        return($ref);
     }
     public function edit($kodeKolam)
     {
@@ -211,4 +224,47 @@ class FirebaseController extends Controller
         return view('backend.editKolam',compact('ref','kodeKolam'));
     }
         
+    // Notif
+    public function updateToken(Request $request){
+    try{
+        $request->user()->update(['device_token'=>$request->token]);
+        return response()->json([
+            'success'=>true
+        ]);
+    }catch(\Exception $e){
+        report($e);
+        return response()->json([
+            'success'=>false
+        ],500);
+    }
+    }
+
+    public function notification(Request $request){
+    $request->validate([
+        'title'=>'required',
+        'message'=>'required'
+    ]);
+
+    try{
+        $fcmTokens = User::whereNotNull('device_token')->pluck('device_token')->toArray();
+
+        //Notification::send(null,new SendPushNotification($request->title,$request->message,$fcmTokens));
+
+        /* or */
+
+        //auth()->user()->notify(new SendPushNotification($title,$message,$fcmTokens));
+
+        /* or */
+
+        Larafirebase::withTitle($request->title)
+            ->withBody($request->message)
+            ->sendMessage($fcmTokens);
+
+        return redirect()->back()->with('success','Notification Sent Successfully!!');
+
+    }catch(\Exception $e){
+        report($e);
+        return redirect()->back()->with('error','Something goes wrong while sending notification.');
+    }
+}
 }

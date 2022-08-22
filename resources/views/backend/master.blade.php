@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,9 @@
     <link href="{{url('assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css')}}" rel="stylesheet">
     <!--c3 CSS -->
     <link href="{{url('assets/extra-libs/c3/c3.min.css')}}" rel="stylesheet">
-    <link href="{{('css/style.css')}}" rel="stylesheet">
+    <link href="{{url('css/style.css')}}" rel="stylesheet">
     <!-- This page CSS -->
-    <link href="{{('css/pages/dashboard1.css')}}" rel="stylesheet">
+    <link href="{{url('css/pages/dashboard1.css')}}" rel="stylesheet">
     <!-- This page CSS -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -148,11 +149,11 @@
               <!-- Profile icon scss in header.scss -->
               <!-- ============================================================== -->
               <li><a class="dropdown-trigger" href="javascript: void(0);" data-target="user_dropdown"><img
-                    src="../../assets/images/users/2.jpg" alt="user" class="circle profile-pic"></a>
+                    src="{{asset('assets/images/users/2.jpg')}}" alt="user" class="circle profile-pic"></a>
                 <ul id="user_dropdown" class="mailbox dropdown-content dropdown-user">
                   <li>
                     <div class="dw-user-box">
-                      <div class="u-img"><img src="../../assets/images/users/2.jpg" alt="user"></div>
+                      <div class="u-img"><img src="{{asset('assets/images/users/2.jpg')}}" alt="user"></div>
                       <div class="u-text">
                         <h4>admin</h4>
                         <p>admin@gmail.com</p>
@@ -271,6 +272,78 @@
 {{-- <script src="{{url('js/pages/dashboards/dashboard1.js')}}"></script> --}}
 <script src="{{url('assets/extra-libs/sparkline/sparkline.js')}}"></script>
                 <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+                <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+         apiKey: "AIzaSyDEDpvikpUuySB-fn4sEsKU2BumgIYQuec",
+          authDomain: "monitoring-kolam-6febd.firebaseapp.com",
+          databaseURL: "https://monitoring-kolam-6febd-default-rtdb.firebaseio.com",
+          projectId: "monitoring-kolam-6febd",
+          storageBucket: "monitoring-kolam-6febd.appspot.com",
+          messagingSenderId: "121423439938",
+          appId: "1:121423439938:web:3338eadf43862190f225db"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const messaging = firebase.messaging();
+    let cs = document.head.querySelector('meta[name="csrf-token"]');
+    function initFirebaseMessagingRegistration() {
+        messaging.requestPermission().then(function () {
+            return messaging.getToken()
+        }).then(function(token) {
+            window.axios.defaults.headers.common['X-CSRF-TOKEN'] = cs.content;
+            axios.post("{{ route('fcmToken') }}",{
+                _method:"PATCH",
+                token,cs
+            }).then(({data})=>{
+                console.log(data)
+            }).catch(({response:{data}})=>{
+                console.error(data)
+            })
+
+        }).catch(function (err) {
+            console.log(`Token Error :: ${err}`);
+        });
+    }
+
+    initFirebaseMessagingRegistration();
+  
+    messaging.onMessage(function({data:{body,title}}){
+        new Notification(title, {body});
+    });
+
+    function notifyMe() {
+  if (!("Notification" in window)) {
+    // Check if the browser supports notifications
+    alert("This browser does not support desktop notification");
+  } else if (Notification.permission === "granted") {
+    // Check whether notification permissions have already been granted;
+    // if so, create a notification
+    const notification = new Notification("Hi there!");
+    // …
+  } else if (Notification.permission !== "denied") {
+    // We need to ask the user for permission
+    Notification.requestPermission().then((permission) => {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        const notification = new Notification("Hi there!");
+        // …
+      }
+    });
+  }
+
+  // At last, if the user has denied notifications, and you
+  // want to be respectful there is no need to bother them anymore.
+}
+</script>
 
 </body>
 </html>
