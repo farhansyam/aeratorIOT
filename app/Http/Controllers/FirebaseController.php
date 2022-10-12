@@ -143,23 +143,82 @@ class FirebaseController extends Controller
         // return $response;
     }
 
-    public function read()
+     // Block Notif
+    public function notifPh()
     {
-        $ref = $this->database->getReference('monitoring')->getValue();
-        $key = $this->database->getReference('monitoring')->getChildKeys();
+        $title = "🐟 SMWP Notif 🐟";
+        $message = " PH Air Kolam Terlalu rendah Segera Cek";
+        $fcmTokens = User::First('device_token')->device_token;
+        // $fcmTokens =
+        Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
+    }
+    public function notifTemp()
+    {
         $title = "🐟 SMWP Notif 🐟";
         $message = "🔥 Suhu Air Kolam Terlalu Panas Segera Cek";
         $fcmTokens = User::First('device_token')->device_token;
         // $fcmTokens =
         Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
+    }
+    public function notifOxy()
+    {
+        $title = "🐟 SMWP Notif 🐟";
+        $message = "Kadar Oxygen Kolam Terlalu Rendah";
+        $fcmTokens = User::First('device_token')->device_token;
+        // $fcmTokens =
+        Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
+    }
+    public function notifKeruh()
+    {
+        $title = "🐟 SMWP Notif 🐟";
+        $message = "Air Kolam Terlalu Keruh Segera Cek";
+        $fcmTokens = User::First('device_token')->device_token;
+        // $fcmTokens =
+        Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
+    }
+
+    public function read()
+    {
+        $user = auth()->user()->name;
+
+        $ref = $this->database->getReference($user)->getValue();
+        if($ref == false){
+        $buat = $this->database->getReference($user.'/'."kolam-1")
+        ->set([
+            
+                "diameter" => 20,
+                "ketinggian" => 20,
+                "namaKolam" => "Kolam-1",
+                "oxygen" => 0,
+                "ph" => 0,
+                "temp" => 0,
+                "turbidity" => 0,
+            
+        ]);
+        $factory = (new Factory)
+        ->withServiceAccount(__DIR__.'/monitoring-kolam.json');
+        $firestore = $factory->createFirestore();
+        $kolam = $firestore->database()->collection(auth()->user()->name.'/kolam-1/update')->newDocument()->set([
+                "jam" => 20,
+                "temp" => 20,
+                "oxygen" => 0,
+                "ph" => 0,
+                "turbidity" => 0,
+        ]); //FireStoreClient Object
+        $key = $this->database->getReference($user)->getChildKeys();
+        return view('home',compact('buat','key'));
+
+        }
+        $key = $this->database->getReference($user)->getChildKeys();
         return view('home',compact('ref','key'));
     }
 
     public function update(Request $request)
     {
         // before
-        $refData = $this->database->getReference('monitoring/'.$request->kodeKolam)->getValue();
-        $ref = $this->database->getReference('monitoring/'.$request->kodeKolam)
+        $user = auth()->user()->name;
+        $refData = $this->database->getReference($user.'/'.$request->kodeKolam)->getValue();
+        $ref = $this->database->getReference($user.'/'.$request->kodeKolam)
         ->update([
             
                 "diameter" => $request->diameter,
@@ -178,7 +237,8 @@ class FirebaseController extends Controller
     public function set(Request $request)
     {
         // set data
-        $ref = $this->database->getReference('monitoring/'.$request->kodeKolam)
+        $user = auth()->user()->name;
+        $ref = $this->database->getReference($user.'/'.$request->kodeKolam)
         ->set([
             
                 "diameter" => $request->diameter,
@@ -193,12 +253,13 @@ class FirebaseController extends Controller
         
 
         // after
-        return redirect('home');
+        return redirect('dashboard');
     }
     
     public function delete($kodeKolam)
     {
-        $ref = $this->database->getReference('monitoring/'.$kodeKolam)->remove();
+        $user = auth()->user()->name;
+        $ref = $this->database->getReference($user.'/'.$kodeKolam)->remove();
         return redirect('read');
     }
 
@@ -209,18 +270,20 @@ class FirebaseController extends Controller
 
     public function detail($kodeKolam)
     {
-        $ref = $this->database->getReference('monitoring/'.$kodeKolam)->getValue();
+        $ref = $this->database->getReference(auth()->user()->name.'/'.$kodeKolam)->getValue();
         return view('backend.detail',compact('ref','kodeKolam'));
     }
     public function detailApi($kodeKolam)
     {
-        $ref = $this->database->getReference('monitoring/'.$kodeKolam)->getValue();
+        $user = auth()->user()->name;
+        $ref = $this->database->getReference($user.'/'.$kodeKolam)->getValue();
         return($ref);
     }
     public function edit($kodeKolam)
     {
         $kode = $kodeKolam;
-        $ref = $this->database->getReference('monitoring/'.$kodeKolam)->getValue();
+        $user = auth()->user()->name;
+        $ref = $this->database->getReference($user.'/'.$kodeKolam)->getValue();
         return view('backend.editKolam',compact('ref','kodeKolam'));
     }
         

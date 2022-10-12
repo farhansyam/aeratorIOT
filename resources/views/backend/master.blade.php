@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
     <title>Aerator IOT</title>
     <!-- chartist CSS -->
+    {{-- ChartScript --}}
     <link href="{{url('assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
     <link href="{{url('assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css')}}" rel="stylesheet">
     <!--c3 CSS -->
@@ -48,12 +49,10 @@
             <!-- ============================================================== -->
             <a href="javascript:void(0)" class="brand-logo">
               <span class="icon">
-                <img class="light-logo" src="../../assets/images/logo-light-icon.png" alt="logos">
-                <img class="dark-logo" src="../../assets/images/logo-icon.png" alt="logos">
+                <img class="light-logo" src="../../assets/images/logo-light-icon.png" alt="Admin">
               </span>
               <span class="text">
-                <img class="light-logo" src="../../assets/images/logo-light-text.png" alt="logos">
-                <img class="dark-logo" src="../../assets/images/logo-text.png" alt="logos">
+                <img class="light-logo" src="../../assets/images/logo-light-text.png" alt="Admin">
               </span>
             </a>
             <!-- ============================================================== -->
@@ -115,7 +114,7 @@
                         </div>
                       </a>
                       <!-- Message -->
-                      <a href="#">
+                      {{-- <a href="#">
                         <span class="btn-floating btn-large cyan"><i class="material-icons">settings</i></span>
                         <div class="mail-contnet">
                           <h5>Settings</h5>
@@ -123,7 +122,7 @@
                             want</span>
                           <span class="time">9:08 AM</span>
                         </div>
-                      </a>
+                      </a> --}}
                       <!-- Message -->
                       <a href="#">
                         <span class="btn-floating btn-large green"><i class="material-icons">face</i></span>
@@ -193,18 +192,18 @@
           </li>
           <li>
               <li>
-                <a href="{{url('home')}}" class="collapsible-header"><i class="material-icons">dashboard</i><span class="hide-menu"> Dashboard </span></a>
+                <a href="{{url('dashboard')}}" class="collapsible-header"><i class="material-icons">dashboard</i><span class="hide-menu"> Dashboard </span></a>
               </li>
-              <li>      
+              {{-- <li>      
                 <a href="#" class="collapsible-header"><i class="material-icons">settings_applications</i><span class="hide-menu"> Settings
                   </span></a>
-              </li>
+              </li> --}}
                 <li>
-                  <a href="#" class="collapsible-header"><i class="material-icons">show_chart</i><span class="hide-menu"> Logs
+                  <a href="{{url('log')}}" class="collapsible-header"><i class="material-icons">show_chart</i><span class="hide-menu"> Logs
                   </span></a>
               </li>
                 <li>
-                  <a href="#" class="collapsible-header"><i class="material-icons">people</i><span class="hide-menu"> Profile </span></a>
+                  <a href="profile/{{auth()->user()->name}}" class="collapsible-header"><i class="material-icons">people</i><span class="hide-menu"> Profile </span></a>
               </li>
               <!-- end -->
             </li>
@@ -224,8 +223,10 @@
           <div class="d-flex align-items-center">
             <h5 class="font-medium m-b-0">Dashboard</h5>
             <div class="custom-breadcrumb ml-auto">
-              <a href="#!" class="breadcrumb">Home</a>
-              <a href="#!" class="breadcrumb">Dashboard</a>
+               <?php $segments = ''; ?>
+                  @foreach(Request::segments() as $segment)
+                          <a href="{{ $segments }}" class="breadcrumb">{{$segment}}</a>
+                  @endforeach
             </div>
           </div>
         </div>
@@ -344,6 +345,5 @@
   // want to be respectful there is no need to bother them anymore.
 }
 </script>
-
 </body>
 </html>

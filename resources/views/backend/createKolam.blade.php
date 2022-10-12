@@ -1,23 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form action="{{url('kolam/set')}}" method="post"><br>
-        @csrf
-        <span>kode kolam</span>
-        <input type="text" name="kodeKolam" id="">
-        <span>nama kolam</span>
-        <input type="text" name="namaKolam" id="">
-        <span>diameter</span>
-        <input type="text" name="diameter" id="">
-        <span>ketinggian</span>
-        <input type="text" name="ketinggian" id="">
-        <button type="submit">Set</button>
-    </form>
-</body>
-</html>
+@extends('backend.master')
+@section('content')
+<div class="card">
+    <div class="card-content">
+        <h5 class="card-title activator">Form Penambahan Monitoring kolam baru<i class="material-icons right tooltipped" data-position="left" data-delay="50" data-tooltip="Get Code">more_vert</i></h5>
+            <form action="{{url('kolam/set')}}" method="post"><br>
+                        @csrf
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Kolam-1" name="kodeKolam" id="kodeKolam" type="text">
+                                <label for="kodeKolam" class="active">Kode Kolam</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Nama Kolam" id="nama" type="text" name="namaKolam">
+                                <label for="nama" class="active">Nama Kolam</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="100 M" id="diameter" type="number" name="diameter">
+                                <label for="diameter" class="active">Diameter</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Ketinggian kolam" id="ketinggian" name="ketinggian">
+                                <label for="ketinggian" class="active">Ketinggian</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div></div>
+@endsection

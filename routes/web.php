@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FirebaseController;
+use App\Http\Controllers\LogController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +28,7 @@ Route::get('kolam/create',[FirebaseController::class, 'create'])->middleware('au
 Route::get('kolam/delete/{namaKolam}',[FirebaseController::class, 'delete'])->middleware('auth');
 //kolam read
 Route::get('read',[FirebaseController::class, 'read']);
-Route::get('kolam/{namaKolam}',[FirebaseController::class, 'detail'])->middleware('auth');
+Route::get('dashboard/{namaKolam}',[FirebaseController::class, 'detail'])->middleware('auth');
 Route::get('kolam/detail/{namaKolam}',[FirebaseController::class, 'detailApi'])->middleware('auth');
 // kolam edit
 Route::get('kolam/edit/{kodeKolam}',[FirebaseController::class, 'edit'])->middleware('auth');
@@ -34,8 +36,16 @@ Route::post('kolam/setupdate',[FirebaseController::class, 'update'])->middleware
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\FirebaseController::class, 'read'])->name('home')->middleware('auth');
+Route::get('/dashboard', [App\Http\Controllers\FirebaseController::class, 'read'])->name('home')->middleware('auth');
 
 // Notif
-Route::patch('/fcmToken', [FirebaseController::class, 'updateToken'])->name('fcmToken');
-Route::post('/send-notification',[FirebaseController::class,'notification'])->name('notification');
+Route::get('/notif-oxy', [FirebaseController::class, 'notifOxy'])->name('fcmToken');
+Route::get('/notif-keruh',[FirebaseController::class,'notifKeruh'])->name('notification');
+Route::get('/notif-ph',[FirebaseController::class,'notifPh'])->name('notification');
+Route::get('/notif-suhu',[FirebaseController::class,'notifTemp'])->name('notification');
+
+// Logs
+Route::get('/log', [LogController::class,'listkolam'])->name('log')->middleware('auth');
+Route::get('/log/{kolam}', [LogController::class,'index'])->name('kolam')->middleware('auth');
+
+Route::get('/profile/{user}', [UserController::class,'get'])->name('profile')->middleware('auth');

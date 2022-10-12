@@ -39,7 +39,7 @@
                     <div id="loginform">
                         <div class="logo">
                             <span class="db"><img src="{{('assets/images/logo-light-icon.png')}}" alt="logo" /></span>
-                            <h5 class="font-medium m-b-20">Sign In to Admin</h5>
+                            <h5 class="font-medium m-b-20">Login untuk Monitoring</h5>
                         </div>
                         <!-- Form -->
                         <div class="row">
