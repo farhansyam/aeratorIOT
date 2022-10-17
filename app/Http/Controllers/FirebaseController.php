@@ -193,6 +193,7 @@ class FirebaseController extends Controller
                 "ph" => 0,
                 "temp" => 0,
                 "turbidity" => 0,
+                "updated_at" => "Nan"
             
         ]);
         $factory = (new Factory)
@@ -206,11 +207,14 @@ class FirebaseController extends Controller
                 "turbidity" => 0,
         ]); //FireStoreClient Object
         $key = $this->database->getReference($user)->getChildKeys();
+
         return view('home',compact('buat','key'));
 
         }
         $key = $this->database->getReference($user)->getChildKeys();
-        return view('home',compact('ref','key'));
+        foreach($key as $keys)
+        $refdetail[] = $this->database->getReference(auth()->user()->name.'/'.$keys)->getValue();
+        return view('home',compact('ref','key','refdetail'));
     }
 
     public function update(Request $request)
@@ -248,6 +252,7 @@ class FirebaseController extends Controller
                 "ph" => 0,
                 "temp" => 0,
                 "turbidity" => 0,
+                "updated_at" => "nan"
             
         ]);
         

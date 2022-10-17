@@ -8,11 +8,12 @@
                   <h5 class="card-title">Nama Kolam : {{$ref['namaKolam']}}</h5>
                   <h5 class="card-title">Ketinggian : {{$ref['ketinggian']}}</h5>
                   <h5 class="card-title">Diameter : {{$ref['diameter']}}</h5>
+                  <h5 class="card-title">Terakhir Update : {{$ref['updated_at']}}</h5>
                 </div>
               </div>
             </div>
 </div>
-                                 `<div class="row">
+          <div class="row">
             <!-- col -->
             <div class="col m6 s12 l3">
               <div class="card">

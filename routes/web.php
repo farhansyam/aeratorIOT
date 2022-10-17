@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InfoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,3 +50,6 @@ Route::get('/log', [LogController::class,'listkolam'])->name('log')->middleware(
 Route::get('/log/{kolam}', [LogController::class,'index'])->name('kolam')->middleware('auth');
 
 Route::get('/profile/{user}', [UserController::class,'get'])->name('profile')->middleware('auth');
+
+
+Route::get('/info', [InfoController::class,'get'])->name('info')->middleware('auth');
