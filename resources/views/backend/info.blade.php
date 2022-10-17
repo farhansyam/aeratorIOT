@@ -4,7 +4,7 @@
                     <div class="col s12">
                         <div class="card">
                             <div class="card-content">
-                                <h5 class="card-title">NAMA SENSOR</h5>
+                                <h5 class="card-title">NAMA ss</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
                                         <img src="{{asset('assets/images/users/d3.jpg')}}" alt="" width="200">
