@@ -5184,6 +5184,18 @@ small {
       cursor: pointer;
       display: block; }
 
+  .card-title h2:after{
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    right: 0;
+    height: 4px;
+    width: 80px;
+    background: #7fad39;
+    content: "";
+    margin: 0 auto;
+  }
+
 #toast-container {
   display: block;
   position: fixed;
