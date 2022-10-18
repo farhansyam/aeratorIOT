@@ -7,7 +7,7 @@
                                 <h5 class="card-title">Sensor Ph</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
-                                        <img src="{{asset('assets/images/users/ph.png')}}" alt="" width="200">
+                                        <img src="{{asset('assets/images/users/ph.png')}}" alt="" width="500">
 
                                     </div>
                                     <div class="col s12 m8">
@@ -38,7 +38,7 @@
                                 <h5 class="card-title">Sensor Turbidity</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
-                                        <img src="{{asset('assets/images/users/turb.png')}}" alt="" width="200">
+                                        <img src="{{asset('assets/images/users/turb.png')}}" alt="" width="500">
 
                                     </div>
                                     <div class="col s12 m8">
@@ -69,7 +69,7 @@
                                 <h5 class="card-title">Sensor Suhu</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
-                                        <img src="{{asset('assets/images/users/suhu.png')}}" alt="" width="200">
+                                        <img src="{{asset('assets/images/users/suhu.png')}}" alt="" width="500">
 
                                     </div>
                                     <div class="col s12 m8">
@@ -100,7 +100,7 @@
                                 <h5 class="card-title">Sensor ORP</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
-                                        <img src="{{asset('assets/images/users/orp.jpg')}}" alt="" width="200">
+                                        <img src="{{asset('assets/images/users/orp.jpg')}}" alt="" width="500">
 
                                     </div>
                                     <div class="col s12 m8">
