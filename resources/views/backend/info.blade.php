@@ -21,7 +21,7 @@
                                         </p>
                                     </div>
                                     <div class="col s12 m12">
-                                        <h2 class="card-title section-title" style="margin-top:50px; font-size:20px;  width:250px; bottom: -15px; height: -4px; background: #7fad39; margin: 0 auto; border-radius:15px;">Kadar Sensor</h2>
+                                        <h2 class="card-title section-title" style="margin-top:50px; font-size:20px;  width:250px; bottom: -25px; height: -4px; background: #7fad39; margin: 0 auto; border-radius:15px;">Kadar Sensor</h2>
                                         <img src="" alt="">
                                     </div>
 
