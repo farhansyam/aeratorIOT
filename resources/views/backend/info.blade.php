@@ -7,7 +7,7 @@
                                 <h5 class="card-title">Sensor Ph</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
-                                        <img src="{{asset('assets/images/users/ph.png')}}" alt="" width="500">
+                                        <img src="{{asset('assets/images/ph.png')}}" alt="" width="500">
 
                                     </div>
                                     <div class="col s12 m8">
@@ -21,7 +21,7 @@
                                         </p>
                                     </div>
                                     <div class="col s12 m12">
-                                        <h2 class="card-title" style="margin-top:20px; font-size:24px;">Kadar Sensor</h2>
+                                        <h2 class="card-title" style="margin-top:20px; font-size:20px;">Kadar Sensor</h2>
                                         <img src="" alt="">
                                     </div>
 
@@ -38,7 +38,7 @@
                                 <h5 class="card-title">Sensor Turbidity</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
-                                        <img src="{{asset('assets/images/users/turb.png')}}" alt="" width="500">
+                                        <img src="{{asset('assets/images/turb.png')}}" alt="" width="500">
 
                                     </div>
                                     <div class="col s12 m8">
@@ -52,7 +52,7 @@
                                         </p>
                                     </div>
                                     <div class="col s12 m12">
-                                        <h2 class="font-weight-bold" style="margin-top:20px;">Kadar Sensor</h2>
+                                        <h2 class="card-title" style="margin-top:20px;">Kadar Sensor</h2>
                                         <img src="" alt="">
                                     </div>
 
@@ -69,7 +69,7 @@
                                 <h5 class="card-title">Sensor Suhu</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
-                                        <img src="{{asset('assets/images/users/suhu.png')}}" alt="" width="500">
+                                        <img src="{{asset('assets/images/suhu.png')}}" alt="" width="500">
 
                                     </div>
                                     <div class="col s12 m8">
@@ -83,7 +83,7 @@
                                         </p>
                                     </div>
                                     <div class="col s12 m12">
-                                        <h2 class="font-weight-bold" style="margin-top:20px;">Kadar Sensor</h2>
+                                        <h2 class="card-title" style="margin-top:20px;">Kadar Sensor</h2>
                                         <img src="" alt="">
                                     </div>
 
@@ -100,7 +100,7 @@
                                 <h5 class="card-title">Sensor ORP</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
-                                        <img src="{{asset('assets/images/users/orp.jpg')}}" alt="" width="500">
+                                        <img src="{{asset('assets/images/orp.png')}}" alt="" width="500">
 
                                     </div>
                                     <div class="col s12 m8">
@@ -114,7 +114,7 @@
                                         </p>
                                     </div>
                                     <div class="col s12 m12">
-                                        <h2 class="font-weight-bold" style="margin-top:20px;">Kadar Sensor</h2>
+                                        <h2 class="card-title" style="margin-top:20px;">Kadar Sensor</h2>
                                         <img src="" alt="">
                                     </div>
 
