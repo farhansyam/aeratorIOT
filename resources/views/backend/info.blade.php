@@ -7,7 +7,7 @@
                                 <h5 class="card-title">Sensor Ph</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
-                                        <img src="{{asset('assets/images/ph.png')}}" alt="" width="500">
+                                        <img src="{{asset('assets/images/ph.png')}}" alt="" width="1000">
 
                                     </div>
                                     <div class="col s12 m8">
@@ -34,7 +34,7 @@
 <div class="row">
                     <div class="col s12">
                         <div class="card">
-                            <div class="card-content">
+                            <div class="card-content container">
                                 <h5 class="card-title">Sensor Turbidity</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
@@ -65,7 +65,7 @@
 <div class="row">
                     <div class="col s12">
                         <div class="card">
-                            <div class="card-content">
+                            <div class="card-content container">
                                 <h5 class="card-title">Sensor Suhu</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
@@ -96,7 +96,7 @@
 <div class="row">
                     <div class="col s12">
                         <div class="card">
-                            <div class="card-content">
+                            <div class="card-content container">
                                 <h5 class="card-title">Sensor ORP</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
