@@ -3,7 +3,7 @@
 <div class="row">
                     <div class="col s12">
                         <div class="card">
-                            <div class="card-content">
+                            <div class="card-content container">
                                 <h5 class="card-title">Sensor Ph</h5>
                                 <div class="row">
                                     <div class="col s12 m4">
