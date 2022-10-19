@@ -18,38 +18,37 @@
         <div id="grafik-turbidity" style="height: 240px; width:100%"></div>
     </div>
 </div>
-<div class="container">
-<div class="card">
-    <table class="table">
-    <tr>
-        <th>Jam</th>
-        <th>Temp</th>
-        <th>Kekeurhan</th>
-        <th>Ph</th>
-        <th>Oxygen</th>
-    </tr>
-    @foreach ($kolam as $data)
-    <tr>
-            <td>
-                {{$data->data()['jam']}}
-            </td>
-            <td>
-                {{$data->data()['temp']}}
-            </td>
-            <td>
-                {{$data->data()['turbidity']}}
-            </td>
-            <td>
-                {{$data->data()['ph']}}
-            </td>
-            <td>
-                {{$data->data()['oxygen']}}
-            </td>
+<div class="container-fluid">
+    <div class="card">
+        <table class="responsive-table">
+        <tr>
+            <th>Jam</th>
+            <th>Temp</th>
+            <th>Kekeruhan</th>
+            <th>Ph</th>
+            <th>Oxygen</th>
         </tr>
-        @endforeach
-    </table>
-
-</div>
+        @foreach ($kolam as $data)
+        <tr>
+                <td>
+                    {{$data->data()['jam']}}
+                </td>
+                <td>
+                    {{$data->data()['temp']}}
+                </td>
+                <td>
+                    {{$data->data()['turbidity']}}
+                </td>
+                <td>
+                    {{$data->data()['ph']}}
+                </td>
+                <td>
+                    {{$data->data()['oxygen']}}
+                </td>
+            </tr>
+            @endforeach
+        </table>
+    </div>
 </div>
 
 <script>
@@ -188,10 +187,10 @@
     var turbidity = <?= json_encode($turb)?>;
     Highcharts.chart('grafik-turbidity',{
         title : {
-            text : 'Kekeurhan Air'
+            text : 'Kekeruhan Air'
         },
          subtitle: {
-        text: 'Kekeurhan air kolam'
+        text: 'Kekeruhan air kolam'
          },
         xAxis : {
             categories : time,
@@ -201,7 +200,7 @@
         },
         yAxis : {
             title:{
-                text : 'Kekeurhan Air'
+                text : 'Kekeruhan Air'
             }
         },
         legend: {
@@ -216,7 +215,7 @@
         },
         series:[
             {
-                name: 'Kekeurhan Air',
+                name: 'Kekeruhan Air',
                 data:ph
             }
         ]

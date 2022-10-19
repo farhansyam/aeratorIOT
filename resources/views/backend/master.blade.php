@@ -61,7 +61,7 @@
                 <img class="light-logo" src="../../assets/images/logo-light-icon.png" alt="Admin">
               </span>
               <span class="text">
-                <img class="light-logo" src="../../assets/images/logo-light-text.png" alt="Admin">
+                <img class="light-logo" src="../../assets/images/logo-teks.png" alt="Admin" style="width:100px; height:23px;">
               </span>
             </a>
             <!-- ============================================================== -->
