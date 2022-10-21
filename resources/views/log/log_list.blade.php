@@ -38,7 +38,7 @@
         
           </div>
             <div class="fixed-action-btn">
-              <a class="btn-floating btn-large blue pulse" href="{{url('kolam/create')}}">
+              <a class="btn-floating btn-large blue waves-effect waves-light" href="{{url('kolam/create')}}">
                 <i class="large material-icons">add</i>aa
               </a>
             </div>    

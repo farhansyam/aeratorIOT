@@ -4,11 +4,11 @@
             <div class="col s12">
               <div class="card">
                 <div class="card-content">
-                  <h5 class="card-title">Detail Kolam</h5>
-                  <h5 class="card-title">Nama Kolam : {{$ref['namaKolam']}}</h5>
-                  <h5 class="card-title">Ketinggian : {{$ref['ketinggian']}}</h5>
-                  <h5 class="card-title">Diameter : {{$ref['diameter']}}</h5>
-                  <h5 class="card-title">Terakhir Update : {{$ref['updated_at']}}</h5>
+                  <h5 class="card-title">DETAIL KOLAM</h5>
+                  <h5 class="card-title"><span style="font-weight:300;"> Nama Kolam   :</span> {{$ref['namaKolam']}}</h5>
+                  <h5 class="card-title"><span style="font-weight:300;"> Ketinggian   :</span> {{$ref['ketinggian']}}</h5>
+                  <h5 class="card-title"><span style="font-weight:300;"> Diameter     :</span> {{$ref['diameter']}}</h5>
+                  <h5 class="card-title"><span style="font-weight:300;"> Terakhir Update :</span> {{$ref['updated_at']}}</h5>
                 </div>
               </div>
             </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div>
                       <span>Turbidity</span>
-                      <h4 class="font-medium m-b-0 turbidity">{{$ref['turbidity']}}</h4>
+                      <h4 class="font-medium m-b-0 turbidity">{{$ref['turbidity']}} NTU</h4>
                     </div>
                   </div>
                 </div>
@@ -76,7 +76,7 @@
                     </div>
                     <div>
                       <span>Oxygen</span>
-                      <h4 class="font-medium m-b-0 oxygen">{{$ref['oxygen']}}</h4>
+                      <h4 class="font-medium m-b-0 oxygen">{{$ref['oxygen']}} mV</h4>
                     </div>
                   </div>
                 </div>
@@ -123,8 +123,8 @@
 </div>
 <div class="container-fluid">
     <div class="card">
-        <table class="responsive-table">
-            <tr>
+        <table class="responsive-table centered ">
+            <tr class="center-align centered">
                 <th>Jam</th>
                 <th>Temp</th>
                 <th>Kekeruhan</th>
@@ -132,7 +132,7 @@
                 <th>Oxygen</th>
             </tr>
             @foreach ($kolam as $data)
-            <tr>
+            <tr class="centered">
                 <td>
                     {{$data->data()['jam']}}
                 </td>

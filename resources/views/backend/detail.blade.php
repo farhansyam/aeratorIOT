@@ -4,11 +4,11 @@
     <div class="col s12">
       <div class="card">
         <div class="card-content">
-          <h5 class="card-title">Detail Kolam</h5>
-          <h5 class="card-title">Nama Kolam : {{$ref['namaKolam']}}</h5>
-          <h5 class="card-title">Ketinggian : {{$ref['ketinggian']}}</h5>
-          <h5 class="card-title">Diameter : {{$ref['diameter']}}</h5>
-          <h5 class="card-title">Terakhir Update : {{$ref['updated_at']}}</h5>
+          <h5 class="card-title ">Detail Kolam</h5>
+          <h5 class="card-title ">Nama Kolam : {{$ref['namaKolam']}}</h5>
+          <h5 class="card-title ">Ketinggian : {{$ref['ketinggian']}}</h5>
+          <h5 class="card-title ">Diameter : {{$ref['diameter']}}</h5>
+          <h5 class="card-title ">Terakhir Update : {{$ref['updated_at']}}</h5>
         </div>
       </div>
     </div>
