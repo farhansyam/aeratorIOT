@@ -17,6 +17,7 @@
     <!--c3 CSS -->
     <link href="{{url('assets/extra-libs/c3/c3.min.css')}}" rel="stylesheet">
     <link href="{{url('css/style.css')}}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link href="{{url('css/tambah.css')}}" rel="stylesheet"> -->
     <!-- This page CSS -->
     <link href="{{url('css/pages/dashboard1.css')}}" rel="stylesheet">
@@ -208,7 +209,7 @@
                   </span></a>
               </li> --}}
                 <li>
-                  <a href="{{url('log')}}" class="collapsible-header"><i class="material-icons">people</i><span class="hide-menu"> Logs
+                  <a href="{{url('log')}}" class="collapsible-header"><i class="material-icons">set_meal</i><span class="hide-menu"> Kolam
                   </span></a>
               </li>
                 <li>
