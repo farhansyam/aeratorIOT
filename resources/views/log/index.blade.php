@@ -21,15 +21,15 @@
 <div class="container-fluid">
     <div class="card">
         <table class="responsive-table">
-        <tr>
-            <th>Jam</th>
-            <th>Temp</th>
-            <th>Kekeruhan</th>
-            <th>Ph</th>
-            <th>Oxygen</th>
-        </tr>
-        @foreach ($kolam as $data)
-        <tr>
+            <tr>
+                <th>Jam</th>
+                <th>Temp</th>
+                <th>Kekeruhan</th>
+                <th>Ph</th>
+                <th>Oxygen</th>
+            </tr>
+            @foreach ($kolam as $data)
+            <tr>
                 <td>
                     {{$data->data()['jam']}}
                 </td>
@@ -52,7 +52,6 @@
 </div>
 
 <script>
-
     var ph = <?= json_encode($phs)?>;
     var time = <?= json_encode($jams)?>;
     var turbidity = <?= json_encode($turb)?>;

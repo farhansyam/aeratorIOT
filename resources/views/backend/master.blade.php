@@ -208,14 +208,14 @@
                   </span></a>
               </li> --}}
                 <li>
-                  <a href="{{url('log')}}" class="collapsible-header"><i class="material-icons">show_chart</i><span class="hide-menu"> Logs
+                  <a href="{{url('log')}}" class="collapsible-header"><i class="material-icons">people</i><span class="hide-menu"> Logs
                   </span></a>
               </li>
                 <li>
                   <a href="profile/{{auth()->user()->name}}" class="collapsible-header"><i class="material-icons">people</i><span class="hide-menu"> Profile </span></a>
               </li>
               <li>
-                  <a href="info" class="collapsible-header"><i class="material-icons">help</i><span class="hide-menu"> Info Sensor </span></a>
+                  <a href="info" class="collapsible-header"><i class="material-icons">help</i><span class="hide-menu"> Info </span></a>
               </li>
               <!-- end -->
             </li>
