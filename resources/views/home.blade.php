@@ -18,6 +18,7 @@
                         <a href="{{url('kolam/delete/'.$key[$i])}}"><button class="waves-effect waves-light red btn "><i class="material-icons dp48">delete</i></button></a> 
                     </div>
                 </div>
+<<<<<<< HEAD
             </div>
         </div>
     </div>
@@ -29,5 +30,13 @@
     <i class="large material-icons">add</i>aa
   </a>
 </div>
+=======
+              </div>
+            </div>
+          </div>
+          
+
+          
+>>>>>>> 70c9f3d01d8d076373c2e01d78917ad4f1be0d54
       
 @endsection
