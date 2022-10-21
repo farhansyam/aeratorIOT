@@ -51,6 +51,7 @@ class LogController extends Controller
     {
         
         $user = auth()->user()->name;
+
         $ref = $this->database->getReference($user)->getValue();
         if($ref == false){
         $buat = $this->database->getReference($user.'/'."kolam-1")
@@ -63,14 +64,28 @@ class LogController extends Controller
                 "ph" => 0,
                 "temp" => 0,
                 "turbidity" => 0,
+                "updated_at" => "Nan"
             
         ]);
+        $factory = (new Factory)
+        ->withServiceAccount(__DIR__.'/monitoring-kolam.json');
+        $firestore = $factory->createFirestore();
+        $kolam = $firestore->database()->collection(auth()->user()->name.'/kolam-1/update')->newDocument()->set([
+                "jam" => 20,
+                "temp" => 20,
+                "oxygen" => 0,
+                "ph" => 0,
+                "turbidity" => 0,
+        ]); //FireStoreClient Object
         $key = $this->database->getReference($user)->getChildKeys();
+
         return view('log.log_list',compact('buat','key'));
 
         }
         $key = $this->database->getReference($user)->getChildKeys();
-        return view('log.log_list',compact('ref','key'));
+        foreach($key as $keys)
+        $refdetail[] = $this->database->getReference(auth()->user()->name.'/'.$keys)->getValue();
+        return view('log.log_list',compact('ref','key','refdetail'));
     }
     /**
      * Show the form for creating a new resource.
