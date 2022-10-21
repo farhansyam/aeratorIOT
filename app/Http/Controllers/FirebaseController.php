@@ -179,9 +179,26 @@ class FirebaseController extends Controller
 
     public function read()
     {
-
-        return view('home');
-
+        $user = auth()->user()->name;
+        $ref = $this->database->getReference($user)->getValue();
+        $kolams = count($ref);
+        if($ref == false){
+        $buat = $this->database->getReference($user.'/'."kolam-1")
+        ->set([
+            
+                "diameter" => 20,
+                "ketinggian" => 20,
+                "namaKolam" => "Kolam-1",
+                "oxygen" => 0,
+                "ph" => 0,
+                "temp" => 0,
+                "turbidity" => 0,
+                "updated_at" => "Nan"
+            
+            ]);
+            
+        }
+        return view('home',compact('kolams'));
     }
 
     public function update(Request $request)
