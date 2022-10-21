@@ -29,7 +29,9 @@ class LogController extends Controller
 
     public function index($kolam)
     {
-         $factory = (new Factory)
+         $ref = $this->database->getReference(auth()->user()->name.'/'.$kolam)->getValue();
+        $col = $kolam;
+        $factory = (new Factory)
         ->withServiceAccount(__DIR__.'/monitoring-kolam.json');
         $firestore = $factory->createFirestore();
         $kolam = $firestore->database()->collection(auth()->user()->name.'/'.$kolam.'/update')->orderby('jam','DESC')->limit(8)->documents(); //FireStoreClient Object
@@ -43,7 +45,7 @@ class LogController extends Controller
             $temp[] = $k->data()['temp'];
         foreach($kolam as $k)
             $oxy[] = $k->data()['oxygen'];
-        return view('log.index',compact('kolam','jams','phs','turb','temp','oxy'));
+        return view('log.index',compact('kolam','jams','phs','turb','temp','oxy','ref','col'));
         
     }
 
