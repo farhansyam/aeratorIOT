@@ -180,8 +180,27 @@ class FirebaseController extends Controller
     public function read()
     {
         $user = auth()->user()->name;
-        $ref = $this->database->getReference($user)->getValue();
-        $kolams = count($ref);
+        // $ref = $this->database->getReference($user)->getValue();
+     $factory = (new Factory)
+        ->withServiceAccount(__DIR__.'/monitoring-kolam.json');
+        $firestore = $factory->createFirestore();
+        $col = 'kolam-1';
+
+        $kolam = $firestore->database()->collection(auth()->user()->name.'/'.'kolam-1/update-harian')->orderby('tanggal-update','DESC')->limit(7)->documents(); //FireStoreClient Object
+         $ref = $this->database->getReference(auth()->user()->name.'/'.'kolam-1')->getValue();
+        foreach($kolam as $k)
+            $tanggal[] = $k->data()['tanggal-update'];
+        foreach($kolam as $k)
+            $phs[] = $k->data()['ph'];
+        foreach($kolam as $k)
+            $turb[] = $k->data()['turbidity'];
+        foreach($kolam as $k)
+            $temp[] = $k->data()['temp'];
+        foreach($kolam as $k)
+            $oxy[] = $k->data()['oxygen'];
+        // return view('log.index',compact());
+        $total = $this->database->getReference($user)->getValue();
+        $kolams = count($total);
         if($ref == false){
         $buat = $this->database->getReference($user.'/'."kolam-1")
         ->set([
@@ -198,7 +217,7 @@ class FirebaseController extends Controller
             ]);
             
         }
-        return view('home',compact('kolams'));
+        return view('home',compact('kolams','ref','kolam','tanggal','phs','turb','temp','oxy','ref','col'));
     }
 
     public function update(Request $request)

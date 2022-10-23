@@ -46,7 +46,6 @@ class LogController extends Controller
         foreach($kolam as $k)
             $oxy[] = $k->data()['oxygen'];
         return view('log.index',compact('kolam','jams','phs','turb','temp','oxy','ref','col'));
-        
     }
 
     public function listkolam()
