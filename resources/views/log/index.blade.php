@@ -25,7 +25,7 @@
                     </div>
                     <div>
                       <span>Temperature</span>
-                      <h4 class="font-medium m-b-0 temp">{{$ref['temp']}} ° C</h4>
+                      <h4 class="font-medium m-b-0"><span class="temp">{{$ref['temp']}}</span>° C</h4>
                     </div>
                   </div>
                 </div>
@@ -42,7 +42,7 @@
                     </div>
                     <div>
                       <span>Ph Air</span>
-                      <h4 class="font-medium m-b-0 ph">{{$ref['ph']}}</h4>
+                      <h4 class="font-medium m-b-0 ph">{{ceil($ref['ph'])}}</h4>
                     </div>
                   </div>
                 </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div>
                       <span>Turbidity</span>
-                      <h4 class="font-medium m-b-0 turbidity">{{$ref['turbidity']}} NTU</h4>
+                      <h4 class="font-medium m-b-0"><span class="turbidity">{{ceil($ref['turbidity'])}}</span> NTU</h4>
                     </div>
                   </div>
                 </div>
@@ -76,7 +76,7 @@
                     </div>
                     <div>
                       <span>Oxygen</span>
-                      <h4 class="font-medium m-b-0 oxygen">{{$ref['oxygen']}} mV</h4>
+                      <h4 class="font-medium m-b-0"><span class="oxygen">{{$ref['oxygen']}}</span> mV</h4>
                     </div>
                   </div>
                 </div>
@@ -93,13 +93,14 @@
           var second = parseInt((new Date().getTime() / 1000) % 30);
             if(second === 0) {
                 var url = "{{url('kolam/detail/'.$col)}}";
-                  $.get(url, function(data, status){
+                $.get(url, function(data, status) {
                   $(".oxygen").text(data.oxygen);
-                  $(".ph").text(data.ph);
-                  $(".temp").text(data.temp +' ° C');
-                  $(".turbidity").text(data.turbidity);
+                  $(".ph").text(Math.ceil(data.ph));
+                  $(".temp").text(data.temp);
+                  $(".turbidity").text(Math.ceil(data.turbidity));
                   console.log('update data monitoring')
-        });
+                  }
+                );
               }
         },1000); // or less than 1 sec    
           </script>

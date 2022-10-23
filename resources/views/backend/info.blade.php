@@ -41,16 +41,10 @@
                 <div class="collapsible-header" tabindex="0"><i class="material-icons">question_answer</i>Apa itu
                 Aplikasi AGENS?
                 </div>
-                <div class="collapsible-body" style=""><span>Anim pariatur cliche reprehenderit,
-                    enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
-                    officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                    nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a
-                    bird on it squid single-origin coffee nulla assumenda shoreditch et.
-                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                    nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                    Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
-                    nesciunt you probably haven't heard of them accusamus labore sustainable
-                    VHS.</span></div>
+                <div class="collapsible-body" style=""><span>
+                    Artificial Intelligence and Internet of Fish (AGENS) merupakan sebuah alat monitoring kualitas air dan sebagai kontrol mesin aerator pada kolam budidaya ikan. 
+                    Alat ini terdiri dari perangkat keras yang bekerja sebagai indikasi kualitas air dalam segi kelembaban, ph, kekeruhan, dan oksidasi; 
+                    dan perangkat lunak yang berbasis website sebagai indikator yang diperoleh dari hasil kerja  perangkat keras.</span></div>
             </li>
             <li class="">
                 <div class="collapsible-header" tabindex="0"><i class="material-icons">question_answer</i>Bagaimana
@@ -111,7 +105,7 @@
                             OPTIMUS memiliki berbagai fitur seperti tips hidup sehat, resep ramuan sehat, kalkulator BMI, dan mini game yang bisa dimainkan untuk hiburan.
                         </p>
                         <div class="card-image">
-                            <img src="{{('assets/images/kadarph.png')}}" alt="">
+                            <img src="{{('assets/images/phalat.png')}}" alt="">
                         </div>
                     </div>
                 </div>

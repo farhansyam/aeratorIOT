@@ -23,9 +23,9 @@
                               <h6 class="active">Terakhir di update : {{$refdetail[$i]['updated_at']}} </h6>
                           </div>
                           <div class="ml-auto">
-                              <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><a href="{{url('log/'.$key[$i])}}"><button class="waves-effect waves-light green btn"><i class="material-icons dp48">remove_red_eye</i></button></a>
-                              <a href="{{url('kolam/edit/'.$key[$i])}}"><button class="waves-effect waves-light orange btn "><i class="material-icons dp48">edit</i></button></a>
-                              <a href="{{url('kolam/delete/'.$key[$i])}}"><button class="waves-effect waves-light red btn "><i class="material-icons dp48">delete</i></button></a>
+                              <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><a href="{{url('log/'.$key[$i])}}"><button class="waves-effect waves-light green btn"><i class="material-icons dp48 top tooltipped" data-position="top" data-delay="50" data-tooltip="Lihat">remove_red_eye</i></button></a>
+                              <a href="{{url('kolam/edit/'.$key[$i])}}"><button class="waves-effect waves-light orange btn "><i class="material-icons dp48 top tooltipped" data-position="top" data-delay="50" data-tooltip="Edit">edit</i></button></a>
+                              <a href="{{url('kolam/delete/'.$key[$i])}}"><button class="waves-effect waves-light red btn "><i class="material-icons dp48 top tooltipped" data-position="top" data-delay="50" data-tooltip="Hapus">delete</i></button></a>
                               
                               </div>
                           </div>
