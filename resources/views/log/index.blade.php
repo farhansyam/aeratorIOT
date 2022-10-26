@@ -25,7 +25,7 @@
                     </div>
                     <div>
                       <span>Temperature</span>
-                      <h4 class="font-medium m-b-0"><span class="temp">{{$ref['temp']}}</span>° C</h4>
+                      <h4 class="font-medium m-b-0"><span class="temp">{{$ref['temp']}}</span>12 ° C</h4>
                     </div>
                   </div>
                 </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div>
                       <span>Turbidity</span>
-                      <h4 class="font-medium m-b-0"><span class="turbidity">{{ceil($ref['turbidity'])}}</span> NTU</h4>
+                      <h4 class="font-medium m-b-0"><span class="turbidity">{{ceil($ref['turbidity'])}}</span>200 NTU</h4>
                     </div>
                   </div>
                 </div>
@@ -76,7 +76,7 @@
                     </div>
                     <div>
                       <span>Oxygen</span>
-                      <h4 class="font-medium m-b-0"><span class="oxygen">{{$ref['oxygen']}}</span> mV</h4>
+                      <h4 class="font-medium m-b-0"><span class="oxygen"> <!-- {{$ref['oxygen']}} --> </span>600 mV</h4>
                     </div>
                   </div>
                 </div>
