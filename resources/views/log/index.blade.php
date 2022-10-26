@@ -8,7 +8,7 @@
                   <h5 class="card-title"><span style="font-weight:300;"> Nama Kolam   :</span> {{$ref['namaKolam']}}</h5>
                   <h5 class="card-title"><span style="font-weight:300;"> Ketinggian   :</span> {{$ref['ketinggian']}}</h5>
                   <h5 class="card-title"><span style="font-weight:300;"> Diameter     :</span> {{$ref['diameter']}}</h5>
-                  <h5 class="card-title"><span style="font-weight:300;"> Terakhir Update :</span> {{$ref['updated_at']}}</h5>
+                  <h5 class="card-title"><span style="font-weight:300;"> Terakhir Update :</span> {{date('Y-m-d h:i:s', strtotime($ref['updated_at']));}}</h5>
                 </div>
               </div>
             </div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Kreait\Firebase\Factory;
 use App\Models\User;
+use App\Models\notif;
 use Kreait\Firebase\Auth;
 use Firebase\Auth\Token\Exception\InvalidToken;
 use Kreait\Firebase\Exception\Auth\RevokedIdToken;
@@ -150,12 +151,24 @@ class FirebaseController extends Controller
         $message = " PH Air Kolam Terlalu rendah Segera Cek";
         $fcmTokens = User::First('device_token')->device_token;
         // $fcmTokens =
+        notif::create([
+                      'Ph Air Rendah',
+                       'deskripsi' => "Ph air rendah segera cek",
+                       'status' => 0, 
+                       'time' => date("Y-m-d H:i:s")]);
+
         Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
     }
     public function notifTemp()
     {
         $title = "🐟 SMWP Notif 🐟";
         $message = "🔥 Suhu Air Kolam Terlalu Panas Segera Cek";
+        notif::create([
+                       'judul' => "Suhu air panas",
+                       'deskripsi' => "Suhu air panas segera cek",
+                       'status' => 0, 
+                       'time' => date("Y-m-d H:i:s")]);
+
         $fcmTokens = User::First('device_token')->device_token;
         // $fcmTokens =
         Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
@@ -164,6 +177,12 @@ class FirebaseController extends Controller
     {
         $title = "🐟 SMWP Notif 🐟";
         $message = "Kadar Oxygen Kolam Terlalu Rendah";
+        notif::create([
+                       'judul' => "Oxygen Air Rendah",
+                       'deskripsi' => "Oxygenn air rendah segera cek",
+                       'status' => 0, 
+                       'time' => date("Y-m-d H:i:s")]);
+
         $fcmTokens = User::First('device_token')->device_token;
         // $fcmTokens =
         Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
@@ -173,8 +192,25 @@ class FirebaseController extends Controller
         $title = "🐟 SMWP Notif 🐟";
         $message = "Air Kolam Terlalu Keruh Segera Cek";
         $fcmTokens = User::First('device_token')->device_token;
+        $notif = Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
+        dd($notif);
+        if($notif){
+            dd("TES");
+        }
+        else{
+            dd("gagal");
+        }
         // $fcmTokens =
-        Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
+       notif::create([
+                       'judul' => "Air Terlalu keruh",
+                       'deskripsi' => "Air kolam keruh segera cek",
+                       'status' => 0, 
+                       'time' => date("Y-m-d H:i:s")]);
+    }
+
+    public function bukaNotif()
+    {
+        notif::query()->update(['status' => 0]);
     }
 
     public function read()
@@ -187,7 +223,22 @@ class FirebaseController extends Controller
         $col = 'kolam-1';
 
         $kolam = $firestore->database()->collection(auth()->user()->name.'/'.'kolam-1/update-harian')->orderby('tanggal-update','DESC')->limit(7)->documents(); //FireStoreClient Object
-         $ref = $this->database->getReference(auth()->user()->name.'/'.'kolam-1')->getValue();
+        if($kolam == NULL){
+            $factory = (new Factory)
+        ->withServiceAccount(__DIR__.'/monitoring-kolam.json');
+        $firestore = $factory->createFirestore();
+        $kolam = $firestore->database()->collection(auth()->user()->name.'/kolam-1/update-harian')->newDocument()->set([
+                "tanggal" => "10.10.10",
+                "temp" => 20,
+                "oxygen" => 0,
+                "ph" => 0,
+                "turbidity" => 0,
+        ]); //FireStoreClient Object
+        
+        }
+
+
+        $ref = $this->database->getReference(auth()->user()->name.'/'.'kolam-1')->getValue();
         foreach($kolam as $k)
             $tanggal[] = $k->data()['tanggal-update'];
         foreach($kolam as $k)
@@ -309,6 +360,7 @@ class FirebaseController extends Controller
         ],500);
     }
     }
+    
 
     public function notification(Request $request){
     $request->validate([

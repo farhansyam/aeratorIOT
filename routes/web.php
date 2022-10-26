@@ -51,5 +51,5 @@ Route::get('/log/{kolam}', [LogController::class,'index'])->name('kolam')->middl
 
 Route::get('/profile/{user}', [UserController::class,'get'])->name('profile')->middleware('auth');
 
-
+Route::patch('/fcm-token', [FirebaseController::class, 'updateToken'])->name('fcmToken');
 Route::get('/info', [InfoController::class,'get'])->name('info')->middleware('auth');

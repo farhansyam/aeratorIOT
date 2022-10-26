@@ -99,7 +99,7 @@
               <!-- Notification icon scss in header.scss -->
               <!-- ============================================================== -->
               <li>
-                <a class="dropdown-trigger" href="javascript: void(0);" data-target="noti_dropdown"><i class="material-icons">notifications</i></a>
+                <a class="dropdown-trigger" href="javascript: void(0);" data-target="noti_dropdown"><i class="material-icons">123</i></a>
                 <ul id="noti_dropdown" class="mailbox dropdown-content">
                   <li>
                     <div class="drop-title">Notifications</div>

@@ -20,7 +20,7 @@
                       <div class="d-flex align-items-center no-block">
                           <div>
                               <h3 class="font-light">{{$key[$i]}}</h3>
-                              <h6 class="active">Terakhir di update : {{$refdetail[$i]['updated_at']}} </h6>
+                              <h6 class="active">Terakhir di update : {{date('Y-m-d h:i:s', strtotime($refdetail[$i]['updated_at']));}} </h6>
                           </div>
                           <div class="ml-auto">
                               <div data-label="20%" class="css-bar m-b-0 css-bar-primary css-bar-20"><a href="{{url('log/'.$key[$i])}}"><button class="waves-effect waves-light green btn"><i class="material-icons dp48">remove_red_eye</i></button></a>
