@@ -1,22 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form action="{{url('kolam/setupdate')}}" method="post"><br>
-        @csrf
-        <span>nama kolam</span>
-        <input type="text" name="namaKolam" id="" value="{{$ref['namaKolam']}}">
-        <input type="text" name="kodeKolam" id="" value="{{$kodeKolam}}" style="display: none">
-        <span>diameter</span>
-        <input type="text" name="diameter" id="" value="{{$ref['diameter']}}">
-        <span>ketinggian</span>
-        <input type="text" name="ketinggian" id="" value="{{$ref['ketinggian']}}">
-        <button type="submit">Set</button>
-    </form>
-</body>
-</html>
+@extends('backend.master')
+@section('content')
+<div class="card">
+    <div class="card-content">
+        <h5 class=" activator" style="font-size:24px; ">Edit Data Kolam<i class="material-icons right tooltipped" data-position="left" data-delay="50" data-tooltip="Get Code">more_vert</i></h5>
+        <form action="{{url('kolam/setupdate')}}" method="post"><br>
+            @csrf
+            <div class="row">
+                <div class="input-field col s12">
+                    <h2 class="card-title">Nama Kolam</h2>
+                    <input type="text" name="namaKolam" id="" value="{{$ref['namaKolam']}}">
+                    <input type="text" name="kodeKolam" id="" value="{{$kodeKolam}}" style="display: none">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <h2 class="card-title">Diameter</h2>
+                    <input type="text" name="diameter" id="" value="{{$ref['diameter']}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <h2 class="card-title">Ketinggian</h2>
+                    <input type="text" name="ketinggian" id="" value="{{$ref['ketinggian']}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="btn green waves-effect waves-light right" type="submit" name="action">Set</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection
