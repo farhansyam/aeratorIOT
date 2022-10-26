@@ -201,22 +201,22 @@
             </div>
           </li>
           <li>
-              <li class="">
-                <a href="{{url('dashboard')}}" class="collapsible-header"><i class="material-icons">dashboard</i><span class="hide-menu"> Dashboard </span></a>
+              <li class="{{ (request()->segment(1) == 'dashboard') ? 'active' : '' }}">
+                <a href="{{url('dashboard')}}" class="collapsible-header "><i class="material-icons">dashboard</i><span class="hide-menu"> Dashboard </span></a>
               </li>
               {{-- <li class=" ">      
                 <a href="#" class="collapsible-header "><i class="material-icons">settings_applications</i><span class="hide-menu"> Settings
                   </span></a>
               </li> --}}
-                <li class=" ">
+                <li class="{{ (request()->segment(1) == 'log') ? 'active' : '' }}">
                   <a href="{{url('log')}}" class="collapsible-header "><i class="material-icons">set_meal</i><span class="hide-menu"> Kolam
                   </span></a>
               </li>
-                <li class=" ">
+                <li class="{{ (request()->segment(1) == 'profile') ? 'active' : '' }}">
                   <a href="profile/{{auth()->user()->name}}" class="collapsible-header"><i class="material-icons">people</i><span class="hide-menu"> Profile </span></a>
               </li>
-              <li class=" ">
-                  <a href="info" class="collapsible-header"><i class="material-icons">help</i><span class="hide-menu"> Info </span></a>
+              <li class="{{ (request()->segment(1) == 'info') ? 'active' : '' }}">
+                  <a href="{{url('info')}}" class="collapsible-header"><i class="material-icons">help</i><span class="hide-menu"> Info </span></a>
               </li>
               <!-- end -->
             </li>
