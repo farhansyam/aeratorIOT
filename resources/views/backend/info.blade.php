@@ -6,6 +6,13 @@
     margin-left:-20px;
     margin-top:-30px;
   }
+
+  @media only screen and (min-width: 722px) {
+    .banner {
+        width:100px;
+        position:fixed;
+    }
+  }
 </style>
 <div class="banner">
     <img src="{{asset('assets/images/banner.png')}}" alt="" width="1300" class="card-image">
