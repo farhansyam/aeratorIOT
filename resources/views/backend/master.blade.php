@@ -107,6 +107,7 @@
                   <li>
                     <div class="message-center">
                       <!-- Message -->
+                      
                       @foreach ($notifs as $notif)
                       <a href="#">
                         <span class="btn-floating btn-large yellow"><i class="material-icons">warning</i></span>

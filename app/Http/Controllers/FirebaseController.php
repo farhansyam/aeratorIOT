@@ -321,11 +321,11 @@ class FirebaseController extends Controller
         return view('backend.createKolam');
     }
 
-    public function detail($kodeKolam)
-    {
-        $ref = $this->database->getReference(auth()->user()->name.'/'.$kodeKolam)->getValue();
-        return view('backend.detail',compact('ref','kodeKolam'));
-    }
+    // public function detail($kodeKolam)
+    // {
+    //     $ref = $this->database->getReference(auth()->user()->name.'/'.$kodeKolam)->getValue();
+    //     return view('backend.detail',compact('ref','kodeKolam'));
+    // }
     public function detailApi($kodeKolam)
     {
         $user = auth()->user()->name;

@@ -30,7 +30,7 @@ Route::get('kolam/create',[FirebaseController::class, 'create'])->middleware('au
 Route::get('kolam/delete/{namaKolam}',[FirebaseController::class, 'delete'])->middleware('auth');
 //kolam read
 Route::get('read',[FirebaseController::class, 'read']);
-Route::get('dashboard/{namaKolam}',[FirebaseController::class, 'detail'])->middleware('auth');
+// Route::get('dashboard/{namaKolam}',[FirebaseController::class, 'detail'])->middleware('auth');
 Route::get('kolam/detail/{namaKolam}',[FirebaseController::class, 'detailApi'])->middleware('auth');
 // kolam edit
 Route::get('kolam/edit/{kodeKolam}',[FirebaseController::class, 'edit'])->middleware('auth');
