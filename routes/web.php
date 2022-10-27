@@ -5,6 +5,7 @@ use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\NotifController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +45,9 @@ Route::get('/notif-oxy', [FirebaseController::class, 'notifOxy'])->name('fcmToke
 Route::get('/notif-keruh',[FirebaseController::class,'notifKeruh'])->name('notification');
 Route::get('/notif-ph',[FirebaseController::class,'notifPh'])->name('notification');
 Route::get('/notif-suhu',[FirebaseController::class,'notifTemp'])->name('notification');
+Route::get('setnotif',[NotifController::class, 'set'])->middleware('auth');
+Route::patch('/fcm-token', [FirebaseController::class, 'updateToken'])->name('fcmToken');
+
 
 // Logs
 Route::get('/log', [LogController::class,'listkolam'])->name('log')->middleware('auth');
@@ -51,5 +55,4 @@ Route::get('/log/{kolam}', [LogController::class,'index'])->name('kolam')->middl
 
 Route::get('/profile/{user}', [UserController::class,'get'])->name('profile')->middleware('auth');
 
-Route::patch('/fcm-token', [FirebaseController::class, 'updateToken'])->name('fcmToken');
 Route::get('/info', [InfoController::class,'get'])->name('info')->middleware('auth');

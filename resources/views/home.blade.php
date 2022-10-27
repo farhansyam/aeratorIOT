@@ -98,25 +98,6 @@
             </div>
         </div> --}}
     </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-          <script>
-
-            // realtime monitor
-        setInterval(function()
-        {
-          var second = parseInt((new Date().getTime() / 1000) % 30);
-            if(second === 0) {
-                var url = "{{url('kolam/detail/'.$col)}}";
-                  $.get(url, function(data, status){
-                  $(".oxygen").text(data.oxygen);
-                  $(".ph").text(data.ph);
-                  $(".temp").text(data.temp +' ° C');
-                  $(".turbidity").text(data.turbidity);
-                  console.log('update data monitoring')
-        });
-              }
-        },1000); // or less than 1 sec    
-          </script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
   <div class="row">
     <div class="col s6">

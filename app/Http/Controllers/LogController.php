@@ -6,6 +6,7 @@ use Kreait\Laravel\Firebase\Facades\Firebase;
 use Kreait\Firebase\ServiceAccount;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Database;
+use App\Models\notif;
 
 
 use Illuminate\Http\Request;
@@ -28,7 +29,9 @@ class LogController extends Controller
     }
 
     public function index($kolam)
-    {
+    {   
+         $notifs = notif::whereStatus(1)->get();
+         $jumlahNotif = count($notifs);
          $ref = $this->database->getReference(auth()->user()->name.'/'.$kolam)->getValue();
         $col = $kolam;
         $factory = (new Factory)
@@ -45,11 +48,12 @@ class LogController extends Controller
             $temp[] = $k->data()['temp'];
         foreach($kolam as $k)
             $oxy[] = $k->data()['oxygen'];
-        return view('log.index',compact('kolam','jams','phs','turb','temp','oxy','ref','col'));
+        return view('log.index',compact('kolam','jams','phs','turb','temp','oxy','ref','col','jumlahNotif','notifs'));
     }
 
     public function listkolam()
-    {
+    {    $notifs = notif::whereStatus(1)->get();
+         $jumlahNotif = count($notifs);
         
         $user = auth()->user()->name;
 
@@ -86,7 +90,7 @@ class LogController extends Controller
         $key = $this->database->getReference($user)->getChildKeys();
         foreach($key as $keys)
         $refdetail[] = $this->database->getReference(auth()->user()->name.'/'.$keys)->getValue();
-        return view('log.log_list',compact('ref','key','refdetail'));
+        return view('log.log_list',compact('ref','key','refdetail','jumlahNotif','notifs'));
     }
     /**
      * Show the form for creating a new resource.

@@ -98,57 +98,32 @@
               <!-- ============================================================== -->
               <!-- Notification icon scss in header.scss -->
               <!-- ============================================================== -->
-              <li>
-                <a class="dropdown-trigger" href="javascript: void(0);" data-target="noti_dropdown"><i class="material-icons">123</i></a>
+             <li>
+                <a onclick="alert(asd)" class="dropdown-trigger kliknotif" href="javascript: void(0);" data-target="noti_dropdown"><i class="fa fa-bell">&nbsp;@php if($jumlahNotif >=1){ echo $jumlahNotif;} else {echo '';}@endphp</i></a>
                 <ul id="noti_dropdown" class="mailbox dropdown-content">
                   <li>
-                    <div class="drop-title">Notifications</div>
+                    <div class="drop-title" onclick="alert(asd)">Notifications</div>
                   </li>
                   <li>
                     <div class="message-center">
                       <!-- Message -->
+                      @foreach ($notifs as $notif)
                       <a href="#">
-                        <span class="btn-floating btn-large red"><i class="material-icons">link</i></span>
+                        <span class="btn-floating btn-large yellow"><i class="material-icons">warning</i></span>
                         <div class="mail-contnet">
-                          <h5>Launch Admin</h5>
-                          <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
-                        </div>
+                          <h5>{{$notif->title}}</h5>
+                          <span class="mail-desc">{{$notif->deskripsi}}</span>
+                        <span class="time">{{$notif->time}}</span>
+                    </div>
                       </a>
-                      <!-- Message -->
-                      <a href="#">
-                        <span class="btn-floating btn-large blue"><i class="material-icons">date_range</i></span>
-                        <div class="mail-contnet">
-                          <h5>Event today</h5>
-                          <span class="mail-desc">Just a reminder that you have event</span>
-                          <span class="time">9:10 AM</span>
-                        </div>
-                      </a>
-                      <!-- Message -->
-                      {{-- <a href="#">
-                        <span class="btn-floating btn-large cyan"><i class="material-icons">settings</i></span>
-                        <div class="mail-contnet">
-                          <h5>Settings</h5>
-                          <span class="mail-desc">You can customize this template as you
-                            want</span>
-                          <span class="time">9:08 AM</span>
-                        </div>
-                      </a> --}}
-                      <!-- Message -->
-                      <a href="#">
-                        <span class="btn-floating btn-large green"><i class="material-icons">face</i></span>
-                        <div class="mail-contnet">
-                          <h5>Lily Jordan</h5>
-                          <span class="mail-desc">Just see the my admin!</span>
-                          <span class="time">9:02 AM</span>
-                        </div>
-                      </a>
+                      @endforeach
+                      <a class="center-align" href="{{url('setnotif')}}"> <strong>clear all
+                          notifications</strong> </a>
                     </div>
                   </li>
-                  <li>
-                    <a class="center-align" href="javascript:void(0);"> <strong>Check all
-                        notifications</strong> </a>
-                  </li>
-                </ul>
+                </ul><!-- ============================================================== -->
+              <!-- Comment topbar icon scss in header.scss -->
+              <!-- ============================================================== -->
               </li>
               <!-- ============================================================== -->
               <!-- Comment topbar icon scss in header.scss -->
@@ -212,9 +187,9 @@
                   <a href="{{url('log')}}" class="collapsible-header "><i class="material-icons">set_meal</i><span class="hide-menu"> Kolam
                   </span></a>
               </li>
-                <li class="{{ (request()->segment(1) == 'profile') ? 'active' : '' }}">
-                  <a href="profile/{{auth()->user()->name}}" class="collapsible-header"><i class="material-icons">people</i><span class="hide-menu"> Profile </span></a>
-              </li>
+                {{-- <li class="{{ (request()->segment(1) == 'profile') ? 'active' : '' }}"> --}}
+                  {{-- <a href="profile/{{auth()->user()->name}}" class="collapsible-header"><i class="material-icons">people</i><span class="hide-menu"> Profile </span></a> --}}
+              {{-- </li> --}}
               <li class="{{ (request()->segment(1) == 'info') ? 'active' : '' }}">
                   <a href="{{url('info')}}" class="collapsible-header"><i class="material-icons">help</i><span class="hide-menu"> Info </span></a>
               </li>
@@ -334,25 +309,25 @@
         new Notification(title, {body});
     });
 
-    function notifyMe() {
-  if (!("Notification" in window)) {
-    // Check if the browser supports notifications
-    alert("This browser does not support desktop notification");
-  } else if (Notification.permission === "granted") {
-    // Check whether notification permissions have already been granted;
-    // if so, create a notification
-    const notification = new Notification("Hi there!");
-    // …
-  } else if (Notification.permission !== "denied") {
-    // We need to ask the user for permission
-    Notification.requestPermission().then((permission) => {
-      // If the user accepts, let's create a notification
-      if (permission === "granted") {
+    function notifyMe(){
+      if (!("Notification" in window)) {
+        // Check if the browser supports notifications
+        alert("This browser does not support desktop notification");
+      } else if (Notification.permission === "granted") {
+        // Check whether notification permissions have already been granted;
+        // if so, create a notification
         const notification = new Notification("Hi there!");
         // …
+      } else if (Notification.permission !== "denied") {
+        // We need to ask the user for permission
+        Notification.requestPermission().then((permission) => {
+          // If the user accepts, let's create a notification
+          if (permission === "granted") {
+            const notification = new Notification("Hi there!");
+            // …
+          }
+        });
       }
-    });
-  }
 
   // At last, if the user has denied notifications, and you
   // want to be respectful there is no need to bother them anymore.

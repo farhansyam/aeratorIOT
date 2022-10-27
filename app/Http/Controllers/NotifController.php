@@ -26,7 +26,7 @@ class NotifController extends Controller
     public function set()
     {
         notif::query()->update(['status' => 0]);
-        return redirect('home');
+        return back();
     }
 
     /**

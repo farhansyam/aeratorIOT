@@ -13,6 +13,7 @@ use Firebase\Auth\Token\Exception\InvalidToken;
 use Kreait\Firebase\Exception\Auth\RevokedIdToken;
 use App\Notifications\SendPushNotification;
 
+
 class FirebaseController extends Controller
 {
     protected $auth, $database;
@@ -149,12 +150,12 @@ class FirebaseController extends Controller
     {
         $title = "🐟 SMWP Notif 🐟";
         $message = " PH Air Kolam Terlalu rendah Segera Cek";
-        $fcmTokens = User::First('device_token')->device_token;
+        $fcmTokens = auth()->user()->device_token;
         // $fcmTokens =
         notif::create([
-                      'Ph Air Rendah',
+                     'judul' => 'Ph Air Rendah',
                        'deskripsi' => "Ph air rendah segera cek",
-                       'status' => 0, 
+                       'status' => 1, 
                        'time' => date("Y-m-d H:i:s")]);
 
         Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
@@ -166,10 +167,10 @@ class FirebaseController extends Controller
         notif::create([
                        'judul' => "Suhu air panas",
                        'deskripsi' => "Suhu air panas segera cek",
-                       'status' => 0, 
+                       'status' => 1, 
                        'time' => date("Y-m-d H:i:s")]);
 
-        $fcmTokens = User::First('device_token')->device_token;
+        $fcmTokens = auth()->user()->device_token;
         // $fcmTokens =
         Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
     }
@@ -180,44 +181,37 @@ class FirebaseController extends Controller
         notif::create([
                        'judul' => "Oxygen Air Rendah",
                        'deskripsi' => "Oxygenn air rendah segera cek",
-                       'status' => 0, 
+                       'status' => 1, 
                        'time' => date("Y-m-d H:i:s")]);
 
-        $fcmTokens = User::First('device_token')->device_token;
+        $fcmTokens = auth()->user()->device_token;
         // $fcmTokens =
         Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
     }
     public function notifKeruh()
     {
+        
         $title = "🐟 SMWP Notif 🐟";
         $message = "Air Kolam Terlalu Keruh Segera Cek";
-        $fcmTokens = User::First('device_token')->device_token;
-        $notif = Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
-        dd($notif);
-        if($notif){
-            dd("TES");
-        }
-        else{
-            dd("gagal");
-        }
+        $fcmTokens = auth()->user()->device_token;
+        
+        auth()->user()->notify(new SendPushNotification($title,$message,$fcmTokens));
         // $fcmTokens =
        notif::create([
                        'judul' => "Air Terlalu keruh",
                        'deskripsi' => "Air kolam keruh segera cek",
-                       'status' => 0, 
+                       'status' => 1, 
                        'time' => date("Y-m-d H:i:s")]);
-    }
-
-    public function bukaNotif()
-    {
-        notif::query()->update(['status' => 0]);
     }
 
     public function read()
     {
+        $notifs = notif::whereStatus(1)->get();
+        $jumlahNotif = count($notifs);
+
         $user = auth()->user()->name;
         // $ref = $this->database->getReference($user)->getValue();
-     $factory = (new Factory)
+        $factory = (new Factory)
         ->withServiceAccount(__DIR__.'/monitoring-kolam.json');
         $firestore = $factory->createFirestore();
         $col = 'kolam-1';
@@ -268,7 +262,7 @@ class FirebaseController extends Controller
             ]);
             
         }
-        return view('home',compact('kolams','ref','kolam','tanggal','phs','turb','temp','oxy','ref','col'));
+        return view('home',compact('kolams','ref','kolam','tanggal','phs','turb','temp','oxy','ref','col','notifs','jumlahNotif'));
     }
 
     public function update(Request $request)
