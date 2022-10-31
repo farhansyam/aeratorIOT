@@ -148,7 +148,7 @@ class FirebaseController extends Controller
      // Block Notif
     public function notifPh()
     {
-        $title = "🐟 SMWP Notif 🐟";
+        $title = "🐟 Agens Notif 🐟";
         $message = " PH Air Kolam Terlalu rendah Segera Cek";
         $fcmTokens = auth()->user()->device_token;
         // $fcmTokens =
@@ -162,7 +162,7 @@ class FirebaseController extends Controller
     }
     public function notifTemp()
     {
-        $title = "🐟 SMWP Notif 🐟";
+        $title = "🐟 Agens Notif 🐟";
         $message = "🔥 Suhu Air Kolam Terlalu Panas Segera Cek";
         notif::create([
                        'judul' => "Suhu air panas",
@@ -176,7 +176,7 @@ class FirebaseController extends Controller
     }
     public function notifOxy()
     {
-        $title = "🐟 SMWP Notif 🐟";
+        $title = "🐟 Agens Notif 🐟";
         $message = "Kadar Oxygen Kolam Terlalu Rendah";
         notif::create([
                        'judul' => "Oxygen Air Rendah",
@@ -191,7 +191,7 @@ class FirebaseController extends Controller
     public function notifKeruh()
     {
         
-        $title = "🐟 SMWP Notif 🐟";
+        $title = "🐟 Agens Notif 🐟";
         $message = "Air Kolam Terlalu Keruh Segera Cek";
         $fcmTokens = auth()->user()->device_token;
         
@@ -216,13 +216,13 @@ class FirebaseController extends Controller
         $firestore = $factory->createFirestore();
         $col = 'kolam-1';
 
-        $kolam = $firestore->database()->collection(auth()->user()->name.'/'.'kolam-1/update-harian')->orderby('tanggal-update','DESC')->limit(7)->documents(); //FireStoreClient Object
+        $kolam = $firestore->database()->collection(auth()->user()->name.'/'.'kolam-1/update-harian')->orderby('jam','DESC')->limit(7)->documents(); //FireStoreClient Object
         if($kolam == NULL){
             $factory = (new Factory)
         ->withServiceAccount(__DIR__.'/monitoring-kolam.json');
         $firestore = $factory->createFirestore();
         $kolam = $firestore->database()->collection(auth()->user()->name.'/kolam-1/update-harian')->newDocument()->set([
-                "tanggal" => "10.10.10",
+                "jam" => "10.10.10",
                 "temp" => 20,
                 "oxygen" => 0,
                 "ph" => 0,
@@ -234,7 +234,7 @@ class FirebaseController extends Controller
 
         $ref = $this->database->getReference(auth()->user()->name.'/'.'kolam-1')->getValue();
         foreach($kolam as $k)
-            $tanggal[] = $k->data()['tanggal-update'];
+            $tanggal[] = date('Y-m-d', strtotime($k->data()['jam']));
         foreach($kolam as $k)
             $phs[] = $k->data()['ph'];
         foreach($kolam as $k)

@@ -37,9 +37,9 @@ class LogController extends Controller
         $factory = (new Factory)
         ->withServiceAccount(__DIR__.'/monitoring-kolam.json');
         $firestore = $factory->createFirestore();
-        $kolam = $firestore->database()->collection(auth()->user()->name.'/'.$kolam.'/update')->orderby('jam','DESC')->limit(8)->documents(); //FireStoreClient Object
+        $kolam = $firestore->database()->collection(auth()->user()->name.'/'.$kolam.'/update')->orderby('jam','DESC')->limit(6)->documents(); //FireStoreClient Object
         foreach($kolam as $k)
-            $jams[] = $k->data()['jam'];
+            $jams[] = date('h:i:s', strtotime($k->data()['jam']));
         foreach($kolam as $k)
             $phs[] = $k->data()['ph'];
         foreach($kolam as $k)
