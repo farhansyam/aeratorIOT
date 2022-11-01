@@ -21,7 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'device_token'
+        'device_token',
+        'username',
+        'avatar'
     ];
 
     /**

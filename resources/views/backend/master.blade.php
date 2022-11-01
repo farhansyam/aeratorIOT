@@ -138,11 +138,11 @@
                 <ul id="user_dropdown" class="mailbox dropdown-content dropdown-user">
                   <li>
                     <div class="dw-user-box">
-                      <div class="u-img"><img src="{{asset('assets/images/users/2.jpg')}}" alt="user"></div>
+                      <div class="u-img"><img src="{{ url('public/Image/'.auth()->user()->avatar)}}" alt="user"></div>
                       <div class="u-text">
                         <h4>admin</h4>
                         <p>admin@gmail.com</p>
-                        <a class="waves-effect waves-light btn-small red white-text">View
+                        <a href="{{route('profile')}}" class="waves-effect waves-light btn-small red white-text">View
                           Profile</a>
                       </div>
                     </div>
@@ -173,7 +173,7 @@
         <ul id="slide-out" class="sidenav" style="background-image: url({{asset('assets/images/pattern-fix.png')}});">
           <li>
             <div class="user-profile" style="background-image: url(../../assets/images/user-bg.jpg);">
-                <h6 class="white-text name"><i class="material-icons m-r-10">account_circle</i> <span class="hidden">{{Auth::user()->name}}</span></h6>
+                <h6 class="white-text name"><i class="material-icons m-r-10">account_circle</i> <span class="hidden">{{Auth::user()->username}}</span></h6>
             </div>
           </li>
           <li>

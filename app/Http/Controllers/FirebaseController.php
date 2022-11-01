@@ -283,7 +283,7 @@ class FirebaseController extends Controller
             
         ]);
 
-        return redirect('read');
+        return redirect('log');
     }
 
     public function set(Request $request)
@@ -334,10 +334,12 @@ class FirebaseController extends Controller
     }
     public function edit($kodeKolam)
     {
+         $notifs = notif::whereStatus(1)->get();
+        $jumlahNotif = count($notifs);
         $kode = $kodeKolam;
         $user = auth()->user()->name;
         $ref = $this->database->getReference($user.'/'.$kodeKolam)->getValue();
-        return view('backend.editKolam',compact('ref','kodeKolam'));
+        return view('backend.editKolam',compact('ref','kodeKolam','jumlahNotif','notifs'));
     }
         
     // Notif
