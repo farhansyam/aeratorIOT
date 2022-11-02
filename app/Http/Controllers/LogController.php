@@ -39,7 +39,7 @@ class LogController extends Controller
         $firestore = $factory->createFirestore();
         $kolam = $firestore->database()->collection(auth()->user()->name.'/'.$kolam.'/update')->orderby('jam','DESC')->limit(6)->documents(); //FireStoreClient Object
         foreach($kolam as $k)
-            $jams[] = date('h:i:s', strtotime($k->data()['jam']));
+            $jams[] = date('h:i', strtotime($k->data()['jam'].' + 5 hours'));
         foreach($kolam as $k)
             $phs[] = $k->data()['ph'];
         foreach($kolam as $k)

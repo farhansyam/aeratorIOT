@@ -56,3 +56,5 @@ Route::get('/log/{kolam}', [LogController::class,'index'])->name('kolam')->middl
 Route::get('/profile/{user}', [UserController::class,'get'])->name('profile')->middleware('auth');
 
 Route::get('/info', [InfoController::class,'get'])->name('info')->middleware('auth');
+Route::get('/profile', [UserController::class,'profile'])->name('profile')->middleware('auth');
+Route::patch('/profile/update', [UserController::class,'update'])->name('update')->middleware('auth');

@@ -32,7 +32,14 @@
                         <div class="col s12">
                             <div class="d-flex no-block align-items-center">
                                 <div>
+                                    @php
+                                     $t=time();
+                                    @endphp
+                                    @if(date('i', @$ref['updated_at']) < date("i",$t))
                                     <h4 style="color:red">OFF</h4>
+                                    @else
+                                    <h4 style="color:rgb(0, 255, 89)">ON</h4>
+                                    @endif
                                     <h6 class="card-subtitle">Status Alat</h6>
                                 </div>
                                 <div class="ml-auto">
@@ -48,8 +55,9 @@
                     </div>
                 </div>
             </div>
+            
         </div>
-        {{-- <div class="col l3 m6 s12">
+        {{-- {{-- <div class="col l3 m6 s12">
             <div class="card">
                 <div class="card-content">
                     <div class="row">
@@ -72,7 +80,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="col l3 m6 s12">
             <div class="card">
                 <div class="card-content">
@@ -80,8 +88,8 @@
                         <div class="col s12">
                             <div class="d-flex no-block align-items-center">
                                 <div>
-                                    <h4>26%</h4>
-                                    <h6 class="card-subtitle">Buying</h6>
+                                    <h4>{{date('H:i:s', @$ref['updated_at'])}}</h4>
+                                    <h6 class="card-subtitle">Tearkhir on</h6>
                                 </div>
                                 <div class="ml-auto">
                                     <span class="black-text display-6"><i class="ti-panel"></i></span>
@@ -90,13 +98,13 @@
                         </div>
                         <div class="col s12">
                             <div class="progress">
-                                <div class="determinate grey darken-3" style="width:70%;"></div>
+                                <div class="determinate grey darken-3" style="width:100%;"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div> 
     </div>
 <script src="https://code.highcharts.com/highcharts.js"></script>
   <div class="row">
