@@ -41,10 +41,10 @@ Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\FirebaseController::class, 'read'])->name('home')->middleware('auth');
 
 // Notif
-Route::get('/notif-oxy', [FirebaseController::class, 'notifOxy'])->name('fcmToken');
-Route::get('/notif-keruh',[FirebaseController::class,'notifKeruh'])->name('notification');
-Route::get('/notif-ph',[FirebaseController::class,'notifPh'])->name('notification');
-Route::get('/notif-suhu',[FirebaseController::class,'notifTemp'])->name('notification');
+Route::get('/notif-oxy/{email}', [FirebaseController::class, 'notifOxy'])->name('notif-oxy');
+Route::get('/notif-keruh/{email}',[FirebaseController::class,'notifKeruh'])->name('notification');
+Route::get('/notif-ph/{email}',[FirebaseController::class,'notifPh'])->name('notification');
+Route::get('/notif-suhu/{email}',[FirebaseController::class,'notifTemp'])->name('notification');
 Route::get('setnotif',[NotifController::class, 'set'])->middleware('auth');
 Route::patch('/fcm-token', [FirebaseController::class, 'updateToken'])->name('fcmToken');
 

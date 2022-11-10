@@ -146,11 +146,11 @@ class FirebaseController extends Controller
     }
 
      // Block Notif
-    public function notifPh()
+    public function notifPh($email)
     {
         $title = "🐟 Agens Notif 🐟";
         $message = " PH Air Kolam Terlalu rendah Segera Cek";
-        $fcmTokens = auth()->user()->device_token;
+        $fcmTokens = User::whereEmail($email)->first()->device_token;
         // $fcmTokens =
         notif::create([
                      'judul' => 'Ph Air Rendah',
@@ -159,8 +159,9 @@ class FirebaseController extends Controller
                        'time' => date("Y-m-d H:i:s")]);
 
         Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
+        return response(200);    
     }
-    public function notifTemp()
+    public function notifTemp($email)
     {
         $title = "🐟 Agens Notif 🐟";
         $message = "🔥 Suhu Air Kolam Terlalu Panas Segera Cek";
@@ -169,12 +170,13 @@ class FirebaseController extends Controller
                        'deskripsi' => "Suhu air panas segera cek",
                        'status' => 1, 
                        'time' => date("Y-m-d H:i:s")]);
-
-        $fcmTokens = auth()->user()->device_token;
-        // $fcmTokens =
+        $fcmTokens = User::whereEmail($email)->first()->device_token;
+       // $fcmTokens =
         Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
+        return response(200);    
+
     }
-    public function notifOxy()
+    public function notifOxy($email)
     {
         $title = "🐟 Agens Notif 🐟";
         $message = "Kadar Oxygen Kolam Terlalu Rendah";
@@ -184,24 +186,29 @@ class FirebaseController extends Controller
                        'status' => 1, 
                        'time' => date("Y-m-d H:i:s")]);
 
-        $fcmTokens = auth()->user()->device_token;
+        $fcmTokens = User::whereEmail($email)->first()->device_token;
         // $fcmTokens =
         Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
+        return response(200);    
+
     }
-    public function notifKeruh()
+    public function notifKeruh($email)
     {
         
         $title = "🐟 Agens Notif 🐟";
         $message = "Air Kolam Terlalu Keruh Segera Cek";
-        $fcmTokens = auth()->user()->device_token;
-        
-        auth()->user()->notify(new SendPushNotification($title,$message,$fcmTokens));
+        $fcmTokens = User::whereEmail($email)->first()->device_token;
+ 
         // $fcmTokens =
        notif::create([
                        'judul' => "Air Terlalu keruh",
                        'deskripsi' => "Air kolam keruh segera cek",
                        'status' => 1, 
                        'time' => date("Y-m-d H:i:s")]);
+        Notification::send(null,new SendPushNotification($title,$message,$fcmTokens));
+        return response(200);    
+
+
     }
 
     public function read()
